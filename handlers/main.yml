@@ -1,0 +1,11 @@
+# file: nagios-server/handlers/main.yml
+
+- name: Reload Nagios
+  service:
+    name: "{{ nagios_service }}"
+    state: reloaded
+
+- name: Reload NSCA
+  service:
+    name: "{{ nsca_service }}"
+    state: reloaded

@@ -1,0 +1,15 @@
+---
+
+- name: Change file persmissions for NSCA
+  file: path={{ item.path }}
+        state=directory
+        mode={{ item.mode }}
+  with_items:
+      - { path: '/var/lib/nagios3/rw', mode: 2710 }
+      - { path: '/var/lib/nagios3', mode: 751 }
+
+- name: Configure NSCA
+  template: src=nsca.cfg.j2 dest={{ nsca_config_file }}
+        owner=root group=root mode=0644
+        backup=yes
+  notify: Reload NSCA

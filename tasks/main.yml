@@ -1,0 +1,19 @@
+---
+
+- include: install.yml
+  tags:
+    - nagios
+    - nagios_server
+    - nagios_server_install
+
+- include: config_nagios.yml
+  tags:
+    - nagios
+    - nagios_server
+    - nagios_server_config
+
+- include: config_nsca.yml
+  tags:
+    - nagios
+    - nagios_server
+    - nagios_server_config

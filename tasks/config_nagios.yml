@@ -1,0 +1,27 @@
+---
+
+- name: Clone custom configuration directories (Git)
+  git:  repo="{{ item.repo }}"
+        dest="{{ item.dest }}"
+        version="{{ item.version }}"
+  with_items: nagios_config_cfg_dirs_git
+  notify: Reload Nagios
+
+- name: Clone custom configuration directories (Mercurial)
+  hg:   repo="{{ item.repo }}"
+        dest="{{ item.dest }}"
+        revision="{{ item.version }}"
+  with_items: nagios_config_cfg_dirs_hg
+  notify: Reload Nagios
+
+- name: Configure Nagios
+  template: src=nagios3.cfg.j2 dest={{ nagios_config_file }}
+        owner=root group=root mode=0644
+        backup=yes
+  notify: Reload Nagios
+
+- name: Apache htpasswd users
+  htpasswd: path=/etc/nagios3/htpasswd.users
+            name="{{ item.name }}"
+            password="{{ item.password }}"
+  with_items: nagios_htpasswd_users

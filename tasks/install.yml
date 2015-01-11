@@ -1,0 +1,12 @@
+---
+
+- name: Install Nagios
+  apt:  pkg={{ item }}
+        state=installed
+        update_cache=yes
+  with_items:
+      - apache2
+      - apache2-mpm-prefork
+      - nagios3
+      - nsca
+      - python-passlib  # Required for the htpasswd Ansible module
