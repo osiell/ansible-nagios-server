@@ -16,8 +16,11 @@ The Nagios web interface will be available on
 
 ## Supported Platforms
 
-- Debian Wheezy (7)
-- Ubuntu Trusty (14.04)
+* Debian
+    - Wheezy    (7)
+    - Jessie    (8)
+* Ubuntu
+    - Trusty    (14.04)
 
 ## Example (Playbook)
 

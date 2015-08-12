@@ -15,7 +15,8 @@
   notify: Reload Nagios
 
 - name: Configure Nagios
-  template: src=nagios3.cfg.j2 dest={{ nagios_config_file }}
+  template: src={{ ansible_distribution_release }}/nagios3.cfg.j2
+        dest={{ nagios_config_file }}
         owner=root group=root mode=0644
         backup=yes
   notify: Reload Nagios

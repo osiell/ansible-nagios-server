@@ -9,7 +9,8 @@
       - { path: '/var/lib/nagios3', mode: 751 }
 
 - name: Configure NSCA
-  template: src=nsca.cfg.j2 dest={{ nsca_config_file }}
+  template: src={{ ansible_distribution_release }}/nsca.cfg.j2
+        dest={{ nsca_config_file }}
         owner=root group=root mode=0644
         backup=yes
   notify: Reload NSCA

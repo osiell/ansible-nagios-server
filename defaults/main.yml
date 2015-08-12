@@ -100,6 +100,8 @@ nagios_config_host_perfdata_file_processing_interval: 0
 nagios_config_service_perfdata_file_processing_interval: 0
 nagios_config_host_perfdata_file_processing_command: process-host-perfdata-file
 nagios_config_service_perfdata_file_processing_command: process-service-perfdata-file
+nagios_config_host_perfdata_process_empty_results: 1    # >= 3.5
+nagios_config_service_perfdata_process_empty_results: 1 # >= 3.5
 nagios_config_obsess_over_services: 0
 nagios_config_ocsp_command: somecommand
 nagios_config_obsess_over_hosts: 0
