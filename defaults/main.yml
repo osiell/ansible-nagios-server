@@ -158,3 +158,53 @@ nsca_config_append_to_file: 0
 nsca_config_max_packet_age: 30
 nsca_config_password: False
 nsca_config_decryption_method: 1
+
+# Standard CGI configuration options
+nagios_cgi_physical_html_path: /usr/share/nagios3/htdocs
+nagios_cgi_url_html_path: /nagios3
+nagios_cgi_show_context_help: 1
+nagios_cgi_use_pending_states: 1
+nagios_cgi_nagios_check_command: /usr/lib/nagios/plugins/check_nagios /var/cache/nagios3/status.dat 5 '/usr/sbin/nagios3'
+nagios_cgi_use_authentication: 1
+nagios_cgi_use_ssl_authentication: 0
+nagios_cgi_default_user_name: False
+nagios_cgi_authorized_for_system_information: nagiosadmin
+nagios_cgi_authorized_for_configuration_information: nagiosadmin
+nagios_cgi_authorized_for_system_commands: nagiosadmin
+nagios_cgi_authorized_for_all_services: nagiosadmin
+nagios_cgi_authorized_for_all_hosts: nagiosadmin
+nagios_cgi_authorized_for_all_service_commands: nagiosadmin
+nagios_cgi_authorized_for_all_host_commands: nagiosadmin
+nagios_cgi_authorized_for_read_only: False
+nagios_cgi_statusmap_background_image: False
+nagios_cgi_color_transparency_index_r: 255
+nagios_cgi_color_transparency_index_g: 255
+nagios_cgi_color_transparency_index_b: 255
+nagios_cgi_default_statusmap_layout: 5
+nagios_cgi_default_statuswrl_layout: 4
+nagios_cgi_statuswrl_include: False
+nagios_cgi_ping_syntax: /bin/ping -n -U -c 5 $HOSTADDRESS$
+nagios_cgi_refresh_rate: 90
+nagios_cgi_result_limit: 100
+nagios_cgi_escape_html_tags: 1
+nagios_cgi_host_unreachable_sound: False
+nagios_cgi_host_down_sound: False
+nagios_cgi_service_critical_sound: False
+nagios_cgi_service_warning_sound: False
+nagios_cgi_service_unknown_sound: False
+nagios_cgi_normal_sound: False
+nagios_cgi_action_url_target: _blank
+nagios_cgi_notes_url_target: _blank
+nagios_cgi_lock_author_names: 1
+nagios_cgi_enable_splunk_integration: False
+nagios_cgi_splunk_url: False
+
+# Apache configuration options
+nagios_a2_config: True      # Set to False to not configure Apache
+nagios_a2_vhost_file: 00-nagios.conf
+nagios_a2_http_port: 80
+nagios_a2_https_port: 443
+nagios_a2_server_name: "{{ ansible_fqdn }}"
+nagios_a2_server_admin: root@localhost
+nagios_a2_ssl_cert_file: /etc/ssl/certs/ssl-cert-snakeoil.pem
+nagios_a2_ssl_cert_keyfile: /etc/ssl/private/ssl-cert-snakeoil.key

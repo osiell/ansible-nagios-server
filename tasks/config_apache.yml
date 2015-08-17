@@ -1,0 +1,34 @@
+---
+
+- name: Enable some required modules
+  apache2_module: state=present name={{ item }}
+  with_items:
+    - ssl
+  when: nagios_a2_config
+  notify: Restart Apache
+
+- name: Configure Apache
+  template: src={{ ansible_distribution_release }}/a2-nagios3.conf.j2
+            dest=/etc/nagios3/apache2.conf
+            owner=root group=root mode=0644
+            backup=yes
+  when: nagios_a2_config
+  notify: Reload Apache
+
+- name: Enable Apache configuration
+  command: a2enconf nagios3
+  changed_when: False
+  when: nagios_a2_config and ansible_distribution_release != 'wheezy'
+
+- name: Configure Apache virtual host
+  template: src=vhost.j2
+            dest=/etc/apache2/sites-available/{{ nagios_a2_vhost_file }}
+            owner=root group=root mode=0644
+            backup=yes
+  when: nagios_a2_config
+  notify: Reload Apache
+
+- name: Enable Apache virtual host
+  command: a2ensite {{ nagios_a2_vhost_file }}
+  changed_when: False
+  when: nagios_a2_config

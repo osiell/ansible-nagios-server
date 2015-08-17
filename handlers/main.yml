@@ -9,3 +9,11 @@
   service:
     name: "{{ nsca_service }}"
     state: reloaded
+
+- name: Restart Apache
+  service: name=apache2 state=restarted
+  when: nagios_a2_config
+
+- name: Reload Apache
+  service: name=apache2 state=reloaded
+  when: nagios_a2_config

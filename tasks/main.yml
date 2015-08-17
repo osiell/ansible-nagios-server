@@ -17,3 +17,18 @@
     - nagios
     - nagios_server
     - nagios_server_config
+
+- include: config_cgi.yml
+  tags:
+    - nagios
+    - nagios_server
+    - nagios_server_config
+    - nagios_server_config_cgi
+
+- include: config_apache.yml
+  tags:
+    - nagios
+    - nagios_server
+    - nagios_server_config
+    - nagios_server_config_cgi
+    - nagios_server_config_apache

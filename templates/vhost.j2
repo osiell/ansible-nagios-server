@@ -1,0 +1,30 @@
+<VirtualHost *:{{ nagios_a2_http_port }}>
+    ServerName {{ nagios_a2_server_name }}
+    Redirect permanent / https://{{ nagios_a2_server_name }}
+
+    ErrorLog ${APACHE_LOG_DIR}/nagios-error.log
+    CustomLog ${APACHE_LOG_DIR}/nagios-access.log combined
+</VirtualHost>
+
+<IfModule mod_ssl.c>
+
+<VirtualHost *:{{ nagios_a2_https_port }}>
+    ServerName {{ nagios_a2_server_name }}
+    ServerAdmin {{ nagios_a2_server_admin }}
+
+    ErrorLog ${APACHE_LOG_DIR}/nagios-ssl-error.log
+    CustomLog ${APACHE_LOG_DIR}/nagios-ssl-access.log combined
+
+    DocumentRoot /usr/share/nagios3/htdocs
+
+    SSLEngine on
+    SSLCertificateFile    {{ nagios_a2_ssl_cert_file }}
+    SSLCertificateKeyFile {{ nagios_a2_ssl_cert_keyfile }}
+    BrowserMatch "MSIE [2-6]" \
+                nokeepalive ssl-unclean-shutdown \
+                downgrade-1.0 force-response-1.0
+    BrowserMatch "MSIE [17-9]" ssl-unclean-shutdown
+
+</VirtualHost>
+
+</IfModule>

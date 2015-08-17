@@ -1,0 +1,8 @@
+---
+
+- name: Configure Nagios CGI
+  template: src={{ ansible_distribution_release }}/cgi.cfg.j2
+        dest={{ nagios_cgi_file }}
+        owner=root group=root mode=0644
+        backup=yes
+  notify: Reload Nagios

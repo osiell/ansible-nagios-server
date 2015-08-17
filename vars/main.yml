@@ -3,5 +3,6 @@
 nagios_version: 3
 nagios_service: nagios3
 nagios_config_file: /etc/nagios3/nagios.cfg
+nagios_cgi_file: /etc/nagios3/cgi.cfg
 nsca_config_file: /etc/nsca.cfg
 nsca_service: nsca
