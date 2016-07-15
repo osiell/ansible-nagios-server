@@ -26,3 +26,9 @@
             name="{{ item.name }}"
             password="{{ item.password }}"
   with_items: nagios_htpasswd_users
+  register: htpasswd
+
+- name: Fix Config Permissions
+  file: dest=/etc/nagios3/htpasswd.users
+        owner="www-data" group="www-data"
+  when: htpasswd.changed
