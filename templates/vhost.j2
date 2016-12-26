@@ -1,11 +1,24 @@
+{% if nagios_a2_http_port %}
 <VirtualHost *:{{ nagios_a2_http_port }}>
     ServerName {{ nagios_a2_server_name }}
+{% if nagios_a2_http2https %}
     Redirect permanent / https://{{ nagios_a2_server_name }}
 
     ErrorLog ${APACHE_LOG_DIR}/nagios-error.log
     CustomLog ${APACHE_LOG_DIR}/nagios-access.log combined
-</VirtualHost>
+{% else %}
+    ServerAdmin {{ nagios_a2_server_admin }}
 
+    ErrorLog ${APACHE_LOG_DIR}/nagios-error.log
+    CustomLog ${APACHE_LOG_DIR}/nagios-access.log combined
+
+    DocumentRoot /usr/share/nagios3/htdocs
+
+{% endif %}
+</VirtualHost>
+{% endif %}
+
+{% if nagios_a2_https_port %}
 <IfModule mod_ssl.c>
 
 <VirtualHost *:{{ nagios_a2_https_port }}>
@@ -28,3 +41,4 @@
 </VirtualHost>
 
 </IfModule>
+{% endif %}

@@ -203,8 +203,9 @@ nagios_cgi_splunk_url: False
 # Apache configuration options
 nagios_a2_config: True      # Set to False to not configure Apache
 nagios_a2_vhost_file: 00-nagios.conf
-nagios_a2_http_port: 80
-nagios_a2_https_port: 443
+nagios_a2_http2https: True  # Redirection HTTP traffic to HTTPS
+nagios_a2_http_port: 80     # Set to False to not configure HTTP vhost
+nagios_a2_https_port: 443   # Set to False to not configure HTTPS vhost
 nagios_a2_server_name: "{{ ansible_fqdn }}"
 nagios_a2_server_admin: root@localhost
 nagios_a2_ssl_cert_file: /etc/ssl/certs/ssl-cert-snakeoil.pem
