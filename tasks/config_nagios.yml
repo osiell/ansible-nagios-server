@@ -1,5 +1,11 @@
 ---
 
+- name: Copy custom configuration directories (local directories)
+  copy: src={{ item.src }}
+        dest={{ item.dest }}
+  with_items: "{{ nagios_config_cfg_dirs_copy }}"
+  notify: Reload Nagios
+
 - name: Clone custom configuration directories (Git)
   git:  repo={{ item.repo }}
         dest={{ item.dest }}

@@ -2,6 +2,7 @@
 
 # Extra Nagios configuration options
 nagios_htpasswd_users: []   # [{name: nagiosadmin, password: password}, {...}]
+nagios_config_cfg_dirs_copy: [] # [{src: REPO, dest: DEST}]
 nagios_config_cfg_dirs_git: []  # [{repo: REPO, dest: DEST, version: VERSION}]
 nagios_config_cfg_dirs_hg: []   # [{repo: REPO, dest: DEST, version: VERSION}]
 

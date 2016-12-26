@@ -60,8 +60,11 @@ cfg_dir={{ cfg_dir }}
 #cfg_dir=/etc/nagios3/switches
 #cfg_dir=/etc/nagios3/routers
 
-{% if nagios_config_cfg_dirs_git or nagios_config_cfg_dirs_hg %}
+{% if nagios_config_cfg_dirs_copy or nagios_config_cfg_dirs_git or nagios_config_cfg_dirs_hg %}
 # CUSTOM CONFIGURATION DIRECTORIES
+{% for item in nagios_config_cfg_dirs_copy %}
+cfg_dir={{ item.dest }}
+{% endfor %}
 {% for item in nagios_config_cfg_dirs_git %}
 cfg_dir={{ item.dest }}
 {% endfor %}
