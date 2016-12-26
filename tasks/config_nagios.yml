@@ -1,17 +1,17 @@
 ---
 
 - name: Clone custom configuration directories (Git)
-  git:  repo="{{ item.repo }}"
-        dest="{{ item.dest }}"
-        version="{{ item.version }}"
-  with_items: nagios_config_cfg_dirs_git
+  git:  repo={{ item.repo }}
+        dest={{ item.dest }}
+        version={{ item.version }}
+  with_items: "{{ nagios_config_cfg_dirs_git }}"
   notify: Reload Nagios
 
 - name: Clone custom configuration directories (Mercurial)
-  hg:   repo="{{ item.repo }}"
-        dest="{{ item.dest }}"
-        revision="{{ item.version }}"
-  with_items: nagios_config_cfg_dirs_hg
+  hg:   repo={{ item.repo }}
+        dest={{ item.dest }}
+        revision={{ item.version }}
+  with_items: "{{ nagios_config_cfg_dirs_hg }}"
   notify: Reload Nagios
 
 - name: Configure Nagios
@@ -23,9 +23,9 @@
 
 - name: Apache htpasswd users
   htpasswd: path=/etc/nagios3/htpasswd.users
-            name="{{ item.name }}"
-            password="{{ item.password }}"
-  with_items: nagios_htpasswd_users
+            name={{ item.name }}
+            password={{ item.password }}
+  with_items: "{{ nagios_htpasswd_users }}"
   register: htpasswd
 
 - name: Fix Config Permissions
