@@ -210,3 +210,4 @@ nagios_a2_server_name: "{{ ansible_fqdn }}"
 nagios_a2_server_admin: root@localhost
 nagios_a2_ssl_cert_file: /etc/ssl/certs/ssl-cert-snakeoil.pem
 nagios_a2_ssl_cert_keyfile: /etc/ssl/private/ssl-cert-snakeoil.key
+nagios_a2_ssl_cert_chainfile: False

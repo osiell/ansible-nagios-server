@@ -31,8 +31,11 @@
     DocumentRoot /usr/share/nagios3/htdocs
 
     SSLEngine on
-    SSLCertificateFile    {{ nagios_a2_ssl_cert_file }}
-    SSLCertificateKeyFile {{ nagios_a2_ssl_cert_keyfile }}
+    SSLCertificateFile      {{ nagios_a2_ssl_cert_file }}
+    SSLCertificateKeyFile   {{ nagios_a2_ssl_cert_keyfile }}
+{% if nagios_a2_ssl_cert_chainfile %}
+    SSLCertificateChainFile {{ nagios_a2_ssl_cert_chainfile }}
+{% endif %}
     BrowserMatch "MSIE [2-6]" \
                 nokeepalive ssl-unclean-shutdown \
                 downgrade-1.0 force-response-1.0
