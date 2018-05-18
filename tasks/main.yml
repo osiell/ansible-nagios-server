@@ -1,31 +1,31 @@
 ---
 
-- include: install.yml
+- import_tasks: install.yml
   tags:
     - nagios
     - nagios_server
     - nagios_server_install
 
-- include: config_nagios.yml
+- import_tasks: config_nagios.yml
   tags:
     - nagios
     - nagios_server
     - nagios_server_config
 
-- include: config_nsca.yml
+- import_tasks: config_nsca.yml
   tags:
     - nagios
     - nagios_server
     - nagios_server_config
 
-- include: config_cgi.yml
+- import_tasks: config_cgi.yml
   tags:
     - nagios
     - nagios_server
     - nagios_server_config
     - nagios_server_config_cgi
 
-- include: config_apache.yml
+- import_tasks: config_apache.yml
   tags:
     - nagios
     - nagios_server
