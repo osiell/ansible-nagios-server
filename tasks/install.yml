@@ -2,7 +2,7 @@
 
 - name: Install Nagios
   apt:  pkg={{ item }}
-        state=installed
+        state=present
         update_cache={{ nagios_apt_update_cache }}
         cache_valid_time={{ nagios_apt_cache_valid_time }}
   with_items:
